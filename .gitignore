@@ -1,0 +1,6 @@
+# файл .gitignore
+.git
+Include/
+Lib/
+Scripts/
+pyvenv.cfg
