@@ -32,5 +32,5 @@ if quest:
 btn = st.button("Короче!", type="primary")
 if btn:
   summarizer = load_summarization_model()
-  result = summarizer(context.context1)
+  result = summarizer(context.context1, truncation=True)
   st.write(result[0]['summary_text'])
