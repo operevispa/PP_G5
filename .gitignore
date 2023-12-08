@@ -1,5 +1,8 @@
 # файл .gitignore
 .git
+__pycache__/
+etc/
+share/
 Include/
 Lib/
 Scripts/
