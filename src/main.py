@@ -51,7 +51,7 @@ if option == 'Саммари':
     # пользователь нажал кнопку, но нам нужно проверить, не "пустой" ли контекст, по которому мы собираем сделать саммари
     if len(context_info) > 99:
       # запускам модель саммари по введенному пользователем тексту
-      result = summarizer(context_info)
+      result = summarizer(context_info, truncation=True)
       st.write(result[0]['summary_text'])
     else:
       # слишком мало контекста, поэтому выдаем ему предупреждение
