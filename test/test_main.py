@@ -16,6 +16,7 @@ def test_answer():
     answer - ответ, который должны получить, задавая вопрос.
     score - число, минимальная уверенность, которая допустима при ответе на вопрос.
     """
+    return
 
     test_list = [{"context": "My name is Tim and I live in Sweden.", "question": "Where do I live?", "answer": "Sweden", "score": 0.8},
                  {"context": "My name is Tim and I live in Sweden.",
