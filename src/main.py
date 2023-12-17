@@ -34,16 +34,32 @@ def load_model_qa():
     return pipeline("question-answering", model="timpal0l/mdeberta-v3-base-squad2")
 
 
-def text_cleaner(stcl):
-    """Функция очистки текста от знака переноса и лишних пробелов в начале и конце строки
+def text_cleaner(text, symbols=' ".<>:,=*\n'):
+    """
+    Функция удаляет все символы, заданные строкой symbols с обоих концов строки.
 
     Args:
-        stcl (str): текст с "лишними" знаками
+        text (str): Исходный текст
+        symbols (str, optional): Символы, который необходимо удалить.
 
     Returns:
-        str: текст, очищенная от знаков
+        str: Текст, очищенный с обоих сторон от символов
     """
-    return stcl.replace("\n", "").strip()
+
+    # Проходим текст 2 раза: с конца строки и с начала
+    for step in range(2):
+
+        text = text[::-1]
+        start = 0
+        for i in text:
+            if i in symbols:
+                start += 1
+            else:
+                break
+
+        text = text[start:]
+
+    return text
 
 
 def get_answer(context, question, st=None):
@@ -66,13 +82,14 @@ def get_answer(context, question, st=None):
     questioner = load_model_qa()
 
     result = questioner(question=question, context=context)
+    result['answer'] = text_cleaner(result['answer'])
 
     # Если st не задано, то выводить результаты в интерфейс не нужно
     if not st is None:
         # проверяем скор полученного от модели ответа.
         if result['score'] > 0.01:
             # скор оказался приемлемы, выводим ответ пользователю
-            st.write(text_cleaner(result['answer']))
+            st.write(result['answer'])
             # и отражаем скор, чтобы пользователь понимал оценочную достоверность ответа
             st.write('score is: ', result['score'])
         else:

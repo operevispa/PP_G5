@@ -6,14 +6,13 @@
 
 """
 
-from src import main
+from ..src import main
 
 # from streamlit.testing.v1 import AppTest
 
 
 # Переменная для тестирования интерфейса
 # at = AppTest.from_file(main)
-
 
 def test_answer():
     """
@@ -38,18 +37,19 @@ def test_answer():
         # Заполняем исходные данные в поля приложения
         result = main.get_answer(valid_rule['context'], valid_rule['question'])
 
-        print(result['answer'])
         assert result['answer'] == valid_rule['answer'], \
             f"""
-            Проверка функционала поиска ответов на вопрос не пройдена.
-            Ожидаемый ответ: '{valid_rule['answer']}'.
-            Полученный ответ: '{result['answer']}'."""
+        Проверка функционала поиска ответов на вопрос не пройдена.
+        Ожидаемый ответ: '{valid_rule['answer']}'.
+        Полученный ответ: '{result['answer']}'.
+        """
 
         assert result['score'] >= valid_rule['score'], \
             f"""
-            Проверка функционала поиска ответов на вопрос не пройдена.
-            Ожидаемая оценка: {valid_rule['score']}.
-            Полученный ответ: {result['score'] }."""
+        Проверка функционала поиска ответов на вопрос не пройдена.
+        Ожидаемая оценка: {valid_rule['score']}.
+        Полученный ответ: {result['score'] }.
+        """
 
 
 if __name__ == '__main__':
