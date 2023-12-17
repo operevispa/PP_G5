@@ -1,14 +1,25 @@
 """
-Файл тестирования основного приложения
-"""
-from streamlit.testing.v1 import AppTest
+Файл тестирования основного приложения. Тестирование интерфейса производится
+с использованием AppTest, предоставленного библиотекой Streamlit. Однако некоторые
+интерфейсные виджеты перехватить невозможно, поэтому для тестирования также используется
+прямое обращение к функциям модуля.
 
-at = AppTest.from_file("./src/main.py")
+"""
+
+from src import main
+
+# from streamlit.testing.v1 import AppTest
+
+
+# Переменная для тестирования интерфейса
+# at = AppTest.from_file(main)
 
 
 def test_answer():
     """
-    Функция проверяет работу функционала по поиску ответов в тексте. Для добавления тестов используется список test_list.
+    Функция проверяет работу функционала по поиску ответов в тексте. Для добавления
+    тестов используется список test_list.
+
     Каждый элемент списка должен содержать словарь со следующими полями:
 
     context - текст в котором ищем ответ.
@@ -16,22 +27,30 @@ def test_answer():
     answer - ответ, который должны получить, задавая вопрос.
     score - число, минимальная уверенность, которая допустима при ответе на вопрос.
     """
-    return
 
     test_list = [{"context": "My name is Tim and I live in Sweden.", "question": "Where do I live?", "answer": "Sweden", "score": 0.8},
                  {"context": "My name is Tim and I live in Sweden.",
                      "question": "What is my name?", "answer": "Tim", "score": 0.8}
                  ]
 
-    # Выбираем опцию поиска ответов
-    at.selectbox[0].select("Искать ответы")
-
     for valid_rule in test_list:
 
         # Заполняем исходные данные в поля приложения
-        at.text_area[0].input(valid_rule["context"]).run()
-        at.text_input[0].input(valid_rule["question"]).run()
-        at.button[0].click().run()
+        result = main.get_answer(valid_rule['context'], valid_rule['question'])
 
-        # assert == valid_rule["answer"]
-        # assert >= valid_rule["score"]
+        print(result['answer'])
+        assert result['answer'] == valid_rule['answer'], \
+            f"""
+            Проверка функционала поиска ответов на вопрос не пройдена.
+            Ожидаемый ответ: '{valid_rule['answer']}'.
+            Полученный ответ: '{result['answer']}'."""
+
+        assert result['score'] >= valid_rule['score'], \
+            f"""
+            Проверка функционала поиска ответов на вопрос не пройдена.
+            Ожидаемая оценка: {valid_rule['score']}.
+            Полученный ответ: {result['score'] }."""
+
+
+if __name__ == '__main__':
+    test_answer()
