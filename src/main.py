@@ -19,9 +19,10 @@ def load_model_summary():
     Возможно использование альтернативных моделей:
     'csebuetnlp/mT5_multilingual_XLSum'
     'd0rj/ru-mbart-large-summ'
+    'IlyaGusev/mbart_ru_sum_gazeta'
     """
 
-    model = 'IlyaGusev/mbart_ru_sum_gazeta'
+    model = 'csebuetnlp/mT5_multilingual_XLSum'
     return pipeline('summarization', model=model)
 
 
