@@ -9,3 +9,7 @@ Include/
 Lib/
 Scripts/
 pyvenv.cfg
+ppg5.service
+ppg5.sh
+src/nohup.out
+.cache
