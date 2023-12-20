@@ -8,7 +8,6 @@
 import streamlit as st
 import torchaudio
 from transformers import pipeline
-from transformers import WhisperTokenizer
 from pytube import YouTube
 
 
@@ -17,7 +16,7 @@ def load_model_recognition():
     """
     Подготавливает и кэширует модель средствами Streamlit
 
-    Returns:        
+    Returns:
         Pipeline: Подготовленная модель с преднастройками
     """
 
@@ -87,9 +86,9 @@ def get_timestamp_from_video(URL, search_text):
         search_text (str): Текст, который ищем
 
     Returns:
-        dict: 
+        dict:
             time(tuple) - Время начала и конца отрезка.
-            sentence(str) - Предложение, в котором найден текст            
+            sentence(str) - Предложение, в котором найден текст
     """
 
     # Для регистронезависимого поиска будем использовать нижний регистр

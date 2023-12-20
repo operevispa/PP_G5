@@ -22,9 +22,10 @@ def test_answer():
     score - число, минимальная уверенность, которая допустима при ответе на вопрос.
     """
 
-    test_list = [{"context": "My name is Tim and I live in Sweden.", "question": "Where do I live?", "answer": "Sweden", "score": 0.8},
+    test_list = [{"context": "My name is Tim and I live in Sweden.",
+                  "question": "Where do I live?", "answer": "Sweden", "score": 0.8},
                  {"context": "My name is Tim and I live in Sweden.",
-                     "question": "What is my name?", "answer": "Tim", "score": 0.8}
+                  "question": "What is my name?", "answer": "Tim", "score": 0.8}
                  ]
 
     for valid_rule in test_list:
@@ -74,5 +75,5 @@ def test_summ():
     # Получаем краткое содержание по тексту.
     result = main.get_sum(context)
 
-    assert type(result) == type('')
+    assert isinstance(result, str)
     assert len(result) > 0
