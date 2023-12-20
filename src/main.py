@@ -31,7 +31,7 @@ def load_model_summary():
     'IlyaGusev/mbart_ru_sum_gazeta'
     """
 
-    model = 'csebuetnlp/mT5_multilingual_XLSum'
+    model = 'IlyaGusev/mbart_ru_sum_gazeta'
     return pipeline('summarization', model=model)
 
 
