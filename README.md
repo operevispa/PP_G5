@@ -42,7 +42,7 @@ streamlit run src/main.py
 - [Татьяна Меркурьева](https://github.com/dzharlaksl), аналитик данных
 - [Евгений Брылин](https://github.com/bev141), Инженер по машинному обучению
 - [Олег Перевиспа](https://github.com/operevispa), Full Stack-разработчик
-- [Вадим Монахов](https://github.com/MonakhovVadim), Тестировщик-QA инженер
+- [Вадим Монахов](https://github.com/MonakhovVadim), Тестировщик-QA инженер, + экспериментальные функции
 - [Клим Колчин](https://github.com/synrocka), Документалист/технический писатель
 
 ### Лицензия
